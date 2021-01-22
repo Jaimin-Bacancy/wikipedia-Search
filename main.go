@@ -23,9 +23,8 @@ var tmpl = template.Must(template.ParseGlob("template/*"))
 var suggetion = map[string]string{}
 
 func getSuggestion(search string) map[string]string {
-	search = strings.Trim(search, " ")
-	var newsearch string
-	newsearch = strings.ReplaceAll(search, " ", "_")
+
+	newsearch := processquery(search)
 	var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + newsearch
 
 	res, _ := http.Get(url)
